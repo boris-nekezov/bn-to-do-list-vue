@@ -5,7 +5,6 @@
         <div class="col">
           <h1 class="text-center">BN To Do List</h1>
 
-
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <button
@@ -28,7 +27,6 @@
               aria-describedby="button-add-task"
             />
           </div>
-          <h3>new taks: {{ newTaskTitle }}</h3>
           <hr />
 
           <TodoList :tasks="data" />
@@ -70,7 +68,7 @@ export default {
   },
   methods: {
     addTask() {
-      DATABASE.ref('data').push({
+      DATABASE.ref("data").push({
         id: this.data.length + 1,
         title: this.title,
         completed: false
@@ -78,8 +76,8 @@ export default {
     }
   },
   mounted() {
-      console.table(this.data);
-      console.table(this.data.length);
+    console.table(this.data);
+    console.table(this.data.length);
   },
   components: {
     // HelloWorld
