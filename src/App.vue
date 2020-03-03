@@ -3,9 +3,12 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <h1 class="text-center">BN To Do List</h1>
 
-          <div class="input-group mb-3">
+          <div class="alert alert-success my-2">
+            <h1 class="text-center">BN To Do List</h1>
+          </div>
+
+          <div class="input-group mb-2">
             <div class="input-group-prepend">
               <button
                 @click="addTask"
@@ -27,15 +30,10 @@
               aria-describedby="button-add-task"
             />
           </div>
-          <hr />
-
+          <!-- /.input-group -->
           <TodoList :tasks="data" />
 
-          <i class="fa fa-square-o icon icon--size-xl" aria-hidden="true"></i>
-          <i
-            class="fa fa-check-square-o icon icon--size-xl"
-            aria-hidden="true"
-          ></i>
+      
         </div>
         <!-- /.col -->
       </div>
@@ -94,5 +92,10 @@ $iconFontSizeXL: 40px;
 }
 .icon--size-xl {
   font-size: $iconFontSizeXL;
+}
+
+.align-items-center {
+  display: flex;
+  align-items: center;
 }
 </style>
