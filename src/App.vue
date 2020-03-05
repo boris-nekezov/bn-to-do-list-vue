@@ -3,11 +3,9 @@
     <div class="container">
       <div class="row">
         <div class="col">
-
           <div class="alert alert-success my-2">
             <h1 class="text-center">BN To Do List</h1>
           </div>
-
           <div class="input-group mb-2">
             <div class="input-group-prepend">
               <button
@@ -31,9 +29,9 @@
             />
           </div>
           <!-- /.input-group -->
-          <TodoList :tasks="data" />
-
-      
+          <TodoList 
+            :tasks="data"
+            :remove="removeTask" />
         </div>
         <!-- /.col -->
       </div>
@@ -58,7 +56,7 @@ export default {
   data() {
     return {
       data: [],
-      title: ""
+      title: "",
     };
   },
   firebase: {
@@ -71,11 +69,14 @@ export default {
         title: this.title,
         completed: false
       });
+    },
+    removeTask(task) {
+      this.$firebaseRefs.data.child(task['.key']).remove();
     }
   },
   mounted() {
-    console.table(this.data);
-    console.table(this.data.length);
+    // console.table(this.data);
+    // console.table(this.data.length);
   },
   components: {
     // HelloWorld

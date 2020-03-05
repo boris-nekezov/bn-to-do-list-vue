@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TodoListItem v-for="task in tasks" :key="task.id" :task="task" />
+    <TodoListItem v-for="task in tasks" :key="task['.key']" :task="task" :remove="remove" />
   </div>
 </template>
 
@@ -13,6 +13,9 @@ export default {
     tasks: {
       type: Array,
       required: true
+    },
+    remove: {
+      type: Function
     }
   },
   components: {
