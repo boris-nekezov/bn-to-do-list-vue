@@ -2,49 +2,72 @@
   <div class="jumbotron mb-2 py-3 px-3">
     <div class="row">
       <div class="col-1 align-items-center">
-        <input :id="task.id" type="checkbox" :checked="task.completed" />
+        <input
+          @change="updateChecked(task, !task.completed)"
+          :id="task.id"
+          type="checkbox"
+          :checked="task.completed"
+        />
         <label :for="task.id"></label>
       </div>
 
       <div class="col-9 align-items-center">
-  
         <div class="container">
           <div class="row">
-              <div class="col">
-                <div class="form-group">
-                  <label
-                    :for="'input'+task.id"
-                    class="input-label"
-                    v-if="!isExpanded"
-                    @click="isExpanded = !isExpanded">
-                    {{ task.title }}</label>
-                  <input 
-                    :id="'input'+task.id"
-                    v-if="isExpanded"
-                    class="form-control form-control-lg mb-2" 
-                    type="text" 
-                    :placeholder="task.title">
-                </div>
-     
+            <div class="col">
+              <div class="form-group">
+                <label
+                  :for="'input' + task.id"
+                  class="input-label"
+                  v-if="!isExpanded"
+                  @click="isExpanded = !isExpanded"
+                >
+                  {{ task.title }}</label
+                >
+                <input
+                  :id="'input' + task.id"
+                  v-if="isExpanded"
+                  v-model="newTitle"
+                  class="form-control form-control-lg mb-2"
+                  type="text"
+                  :placeholder="task.title"
+                />
               </div>
             </div>
+          </div>
 
-            <div class="row">
-              <div class="col">
-                <div 
-                    v-if="isExpanded"
-                    class="btn-group btn-group-lg" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-success">Save</button>
-                    <button 
-                      @click="isExpanded = !isExpanded"
-                      type="button" class="btn btn-warning">Cancel</button>
-                  </div>
+          <div class="row">
+            <div class="col">
+              <div
+                v-if="isExpanded"
+                class="btn-group btn-group-lg"
+                role="group"
+                aria-label="Basic example"
+              >
+                <button
+                  @click="
+                    updateTitle(task, newTitle);
+                    isExpanded = !isExpanded;
+                  "
+                  type="button"
+                  class="btn btn-success"
+                >
+                  Save
+                </button>
+                <button
+                  @click="
+                    isExpanded = !isExpanded;
+                    newTitle = task.title;
+                  "
+                  type="button"
+                  class="btn btn-warning"
+                >
+                  Cancel
+                </button>
               </div>
             </div>
+          </div>
         </div>
-  
-     
-        {{ isExpanded }}
       </div>
 
       <div class="col-2 align-items-center">
@@ -54,14 +77,14 @@
           @click="isExpanded = !isExpanded"
         >
           <i class="fa fa-pencil" aria-hidden="true"></i>
-          asd
-          <i class="fa fa-pencil-square" aria-hidden="true"></i>
           Edit
         </button>
-        <button 
-          v-if="isExpanded" 
+        <button
+          v-if="isExpanded"
           class="btn btn-danger btn-lg"
-          @click="remove(task)">
+          @click="remove(task)"
+        >
+          <i class="fa fa-trash-o" aria-hidden="true"></i>
           Delete
         </button>
       </div>
@@ -76,15 +99,11 @@ export default {
   name: "TodoListItem",
   data() {
     return {
-      isExpanded: false
+      isExpanded: false,
+      newTitle: this.task.title
     };
   },
-  props: ["task", "remove"],
-  methods: {
-    logTask() {
-      console.log(this.task);
-    }
-  }
+  props: ["task", "remove", "updateChecked", "updateTitle"]
 };
 </script>
 

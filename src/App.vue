@@ -29,9 +29,12 @@
             />
           </div>
           <!-- /.input-group -->
-          <TodoList 
+          <TodoList
             :tasks="data"
-            :remove="removeTask" />
+            :updateCheckedState="updateCheckedState"
+            :updateTitleState="updateTitleState"
+            :remove="removeTask"
+          />
         </div>
         <!-- /.col -->
       </div>
@@ -56,7 +59,7 @@ export default {
   data() {
     return {
       data: [],
-      title: "",
+      title: ""
     };
   },
   firebase: {
@@ -70,8 +73,20 @@ export default {
         completed: false
       });
     },
+    updateCheckedState(task, newCheckedState) {
+      this.$firebaseRefs.data
+        .child(task[".key"])
+        .child("completed")
+        .set(newCheckedState);
+    },
+    updateTitleState(task, newTitle) {
+      this.$firebaseRefs.data
+        .child(task[".key"])
+        .child("title")
+        .set(newTitle);
+    },
     removeTask(task) {
-      this.$firebaseRefs.data.child(task['.key']).remove();
+      this.$firebaseRefs.data.child(task[".key"]).remove();
     }
   },
   mounted() {

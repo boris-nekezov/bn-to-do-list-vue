@@ -1,6 +1,13 @@
 <template>
   <div>
-    <TodoListItem v-for="task in tasks" :key="task['.key']" :task="task" :remove="remove" />
+    <TodoListItem
+      v-for="task in tasks"
+      :key="task['.key']"
+      :task="task"
+      :updateChecked="updateCheckedState"
+      :updateTitle="updateTitleState"
+      :remove="remove"
+    />
   </div>
 </template>
 
@@ -15,6 +22,12 @@ export default {
       required: true
     },
     remove: {
+      type: Function
+    },
+    updateCheckedState: {
+      type: Function
+    },
+    updateTitleState: {
       type: Function
     }
   },
