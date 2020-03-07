@@ -76,7 +76,7 @@
           class="btn btn-warning btn-lg"
           @click="isExpanded = !isExpanded"
         >
-          <i class="fa fa-pencil" aria-hidden="true"></i>
+          <AppIcon icon="pencil" /> 
           Edit
         </button>
         <button
@@ -84,7 +84,7 @@
           class="btn btn-danger btn-lg"
           @click="remove(task)"
         >
-          <i class="fa fa-trash-o" aria-hidden="true"></i>
+          <AppIcon icon="trash-o" /> 
           Delete
         </button>
       </div>
@@ -95,6 +95,7 @@
 </template>
 
 <script>
+import AppIcon from "./ui/AppIcon.vue";
 export default {
   name: "TodoListItem",
   data() {
@@ -103,7 +104,10 @@ export default {
       newTitle: this.task.title
     };
   },
-  props: ["task", "remove", "updateChecked", "updateTitle"]
+  props: ["task", "remove", "updateChecked", "updateTitle"],
+  components: {
+    AppIcon
+  }
 };
 </script>
 

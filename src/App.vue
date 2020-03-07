@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div class="container">
-      <div class="row">
-        <div class="col">
+      <div class="row justify-content-center">
+        <div class="col-10">
           <div class="alert alert-success my-2">
             <h1 class="text-center">BN To Do List</h1>
           </div>
@@ -14,7 +14,7 @@
                 type="button"
                 id="button-addon1"
               >
-                <i class="fa fa-plus icon" aria-hidden="true"></i>
+                <AppIcon icon="plus" />
                 Add new task
               </button>
             </div>
@@ -49,10 +49,11 @@
 
 <script>
 // import HelloWorld from "./components/HelloWorld.vue";
+import AppIcon from './components/ui/AppIcon.vue';
 import TodoList from "./components/TodoList.vue";
 
 // RecentDocuments.vue
-import { DATABASE } from "./DATABASE";
+import { db } from "./db";
 
 export default {
   name: "App",
@@ -63,11 +64,11 @@ export default {
     };
   },
   firebase: {
-    data: DATABASE.ref("data")
+    data: db.ref("data")
   },
   methods: {
     addTask() {
-      DATABASE.ref("data").push({
+      db.ref("data").push({
         id: this.data.length + 1,
         title: this.title,
         completed: false
@@ -95,21 +96,13 @@ export default {
   },
   components: {
     // HelloWorld
+    AppIcon,
     TodoList
   }
 };
 </script>
 
 <style lang="scss">
-$iconFontRegular: 20px;
-$iconFontSizeXL: 40px;
-.icon {
-  font-size: $iconFontRegular;
-}
-.icon--size-xl {
-  font-size: $iconFontSizeXL;
-}
-
 .align-items-center {
   display: flex;
   align-items: center;
