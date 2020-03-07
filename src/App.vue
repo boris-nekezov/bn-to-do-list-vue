@@ -41,9 +41,6 @@
       <!-- /.row -->
     </div>
     <!-- /.container -->
-
-    <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
   </div>
 </template>
 
@@ -90,12 +87,7 @@ export default {
       this.$firebaseRefs.data.child(task[".key"]).remove();
     }
   },
-  mounted() {
-    // console.table(this.data);
-    // console.table(this.data.length);
-  },
   components: {
-    // HelloWorld
     AppIcon,
     TodoList
   }
