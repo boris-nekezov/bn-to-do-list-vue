@@ -76,7 +76,7 @@
           class="btn btn-warning btn-lg"
           @click="isExpanded = !isExpanded"
         >
-          <AppIcon icon="pencil" /> 
+          <AppIcon icon="pencil" />
           Edit
         </button>
         <button
@@ -84,7 +84,7 @@
           class="btn btn-danger btn-lg"
           @click="remove(task)"
         >
-          <AppIcon icon="trash-o" /> 
+          <AppIcon icon="trash-o" />
           Delete
         </button>
       </div>

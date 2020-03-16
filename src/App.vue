@@ -30,11 +30,13 @@
           </div>
           <!-- /.input-group -->
           <TodoList
+            v-if="loaded"
             :tasks="data"
             :updateCheckedState="updateCheckedState"
             :updateTitleState="updateTitleState"
             :remove="removeTask"
           />
+          <AppSpinner v-else />
         </div>
         <!-- /.col -->
       </div>
@@ -45,8 +47,8 @@
 </template>
 
 <script>
-// import HelloWorld from "./components/HelloWorld.vue";
-import AppIcon from './components/ui/AppIcon.vue';
+import AppIcon from "./components/ui/AppIcon.vue";
+import AppSpinner from "./components/ui/AppSpinner";
 import TodoList from "./components/TodoList.vue";
 
 // RecentDocuments.vue
@@ -57,11 +59,18 @@ export default {
   data() {
     return {
       data: [],
-      title: ""
+      title: "",
+      loaded: false
     };
   },
   firebase: {
-    data: db.ref("data")
+      data: db.ref("data"),
+  },
+  mounted() {
+    db.ref('loadedHook').once('value', snapshot => {
+      const data = snapshot.val();
+      this.loaded = data.loaded;
+    })
   },
   methods: {
     addTask() {
@@ -89,6 +98,7 @@ export default {
   },
   components: {
     AppIcon,
+    AppSpinner,
     TodoList
   }
 };
