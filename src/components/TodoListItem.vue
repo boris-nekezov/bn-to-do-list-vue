@@ -44,26 +44,27 @@
                 role="group"
                 aria-label="Basic example"
               >
-                <button
-                  @click="
+                <app-button
+                  @click.native="
                     updateTitle(task, newTitle);
                     isExpanded = !isExpanded;
                   "
-                  type="button"
-                  class="btn btn-success"
+                  modifier="success"
                 >
                   Save
-                </button>
-                <button
-                  @click="
+                </app-button>
+
+                <app-button
+                  @click.native="
                     isExpanded = !isExpanded;
                     newTitle = task.title;
                   "
-                  type="button"
-                  class="btn btn-warning"
+                  modifier="warning"
+                  size="lg"
                 >
                   Cancel
-                </button>
+                </app-button>
+
               </div>
             </div>
           </div>
@@ -71,22 +72,25 @@
       </div>
 
       <div class="col-2 align-items-center">
-        <button
+        <app-button
           v-if="!isExpanded"
-          class="btn btn-warning btn-lg"
-          @click="isExpanded = !isExpanded"
+          @click.native="isExpanded = !isExpanded"
+          modifier="warning"
+          size="lg"
         >
           <AppIcon icon="pencil" />
           Edit
-        </button>
-        <button
+        </app-button>
+
+        <app-button
           v-if="isExpanded"
-          class="btn btn-danger btn-lg"
-          @click="remove(task)"
+          @click.native="remove(task)"
+          modifier="danger"
+          size="lg"
         >
           <AppIcon icon="trash-o" />
           Delete
-        </button>
+        </app-button>
       </div>
     </div>
     <!-- /.row -->
@@ -96,6 +100,7 @@
 
 <script>
 import AppIcon from "./ui/AppIcon.vue";
+import AppButton from "./ui/AppButton";
 export default {
   name: "TodoListItem",
   data() {
@@ -106,7 +111,8 @@ export default {
   },
   props: ["task", "remove", "updateChecked", "updateTitle"],
   components: {
-    AppIcon
+    AppIcon,
+    AppButton
   }
 };
 </script>

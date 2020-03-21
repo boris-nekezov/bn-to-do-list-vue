@@ -8,15 +8,13 @@
           </div>
           <div class="input-group mb-2">
             <div class="input-group-prepend">
-              <button
-                @click="addTask"
-                class="btn btn-success"
-                type="button"
-                id="button-addon1"
+              <app-button
+                @click.native="addTask"
+                modifier="success"
               >
                 <AppIcon icon="plus" />
-                Add new task
-              </button>
+                Add new taska
+              </app-button>
             </div>
             <input
               type="text"
@@ -49,6 +47,7 @@
 <script>
 import AppIcon from "./components/ui/AppIcon.vue";
 import AppSpinner from "./components/ui/AppSpinner";
+import AppButton from "./components/ui/AppButton";
 import TodoList from "./components/TodoList.vue";
 
 // RecentDocuments.vue
@@ -99,6 +98,7 @@ export default {
   components: {
     AppIcon,
     AppSpinner,
+    AppButton,
     TodoList
   }
 };
