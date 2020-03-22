@@ -1,6 +1,6 @@
 <template>
   <div class="alert alert-success">
-    <TodoListItem
+    <todo-list-item
       v-for="task in tasks"
       :key="task['.key']"
       :task="task"

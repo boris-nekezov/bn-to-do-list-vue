@@ -12,8 +12,8 @@
                 @click.native="addTask"
                 modifier="success"
               >
-                <AppIcon icon="plus" />
-                Add new taska
+                <app-icon icon="plus" />
+                Add new task
               </app-button>
             </div>
             <input
@@ -27,14 +27,14 @@
             />
           </div>
           <!-- /.input-group -->
-          <TodoList
+          <todo-list
             v-if="loaded"
             :tasks="data"
             :updateCheckedState="updateCheckedState"
             :updateTitleState="updateTitleState"
             :remove="removeTask"
           />
-          <AppSpinner v-else />
+          <app-spinner v-else />
         </div>
         <!-- /.col -->
       </div>

@@ -78,7 +78,7 @@
           modifier="warning"
           size="lg"
         >
-          <AppIcon icon="pencil" />
+          <app-icon icon="pencil" />
           Edit
         </app-button>
 
@@ -88,7 +88,7 @@
           modifier="danger"
           size="lg"
         >
-          <AppIcon icon="trash-o" />
+          <app-icon icon="trash-o" />
           Delete
         </app-button>
       </div>
