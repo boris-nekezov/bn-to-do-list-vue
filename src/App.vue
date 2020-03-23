@@ -3,30 +3,11 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-10">
-          <div class="alert alert-success my-2">
-            <h1 class="text-center">BN To Do List</h1>
-          </div>
-          <div class="input-group mb-2">
-            <div class="input-group-prepend">
-              <app-button
-                @click.native="addTask"
-                modifier="success"
-              >
-                <app-icon icon="plus" />
-                Add new task
-              </app-button>
-            </div>
-            <input
-              type="text"
-              v-model="title"
-              @keydown.enter="addTask"
-              class="form-control"
-              placeholder=""
-              aria-label="Add new task button"
-              aria-describedby="button-add-task"
-            />
-          </div>
-          <!-- /.input-group -->
+
+          <app-header />
+
+          <todo-list-add :added="addTask" />
+
           <todo-list
             v-if="loaded"
             :tasks="data"
@@ -45,10 +26,10 @@
 </template>
 
 <script>
-import AppIcon from "./components/ui/AppIcon.vue";
-import AppSpinner from "./components/ui/AppSpinner";
-import AppButton from "./components/ui/AppButton";
-import TodoList from "./components/TodoList.vue";
+import AppHeader from "./components/AppHeader";
+import TodoListAdd from "./components/TodoList/TodoListAdd";
+import TodoList from "./components/TodoList/TodoList.vue";
+import AppSpinner from "./components/UI/AppSpinner";
 
 // RecentDocuments.vue
 import { db } from "./db";
@@ -72,10 +53,10 @@ export default {
     })
   },
   methods: {
-    addTask() {
+    addTask(title) {
       db.ref("data").push({
-        id: this.data.length + 1,
-        title: this.title,
+        id: (new Date()).getTime(),
+        title: title,
         completed: false
       });
     },
@@ -96,10 +77,10 @@ export default {
     }
   },
   components: {
-    AppIcon,
-    AppSpinner,
-    AppButton,
-    TodoList
+    AppHeader,
+    TodoListAdd,
+    TodoList,
+    AppSpinner
   }
 };
 </script>

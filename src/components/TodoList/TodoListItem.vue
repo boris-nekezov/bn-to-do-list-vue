@@ -99,8 +99,8 @@
 </template>
 
 <script>
-import AppIcon from "./ui/AppIcon.vue";
-import AppButton from "./ui/AppButton";
+import AppIcon from "../UI/AppIcon.vue";
+import AppButton from "../UI/AppButton";
 export default {
   name: "TodoListItem",
   data() {
