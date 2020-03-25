@@ -2,21 +2,17 @@
   <div class="input-group mb-2">
     <div class="input-group-prepend">
       <app-button
-              @click.native="added(title)"
-              modifier="success"
+        @click.native="added(title)"
+        modifier="success"
       >
         <app-icon icon="plus" />
         Add new task
       </app-button>
     </div>
-    <input
+    <app-input
       type="text"
-      v-model="title"
-      @keydown.enter="added(title)"
-      class="form-control"
-      placeholder=""
-      aria-label="Add new task button"
-      aria-describedby="button-add-task"
+      @valueWasEdited="title = $event"
+      @keydown.enter.native="added(title)"
     />
   </div>
   <!-- /.input-group -->
@@ -25,6 +21,7 @@
 <script>
   import AppButton from "../UI/AppButton";
   import AppIcon from "../UI/AppIcon";
+  import AppInput from "../UI/AppInput";
 
   export default {
     name: 'TodoListAdd',
@@ -41,7 +38,8 @@
     },
     components: {
       AppButton,
-      AppIcon
+      AppIcon,
+      AppInput
     }
   }
 </script>
