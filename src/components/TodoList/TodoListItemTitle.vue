@@ -26,11 +26,6 @@
 <script>
   export default {
     name: 'TodoListItemTitle',
-    data(){
-      return {
-        newTitle: '',
-      }
-    },
     props: {
       task: {
         type: Object,
