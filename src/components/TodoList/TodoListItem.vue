@@ -1,15 +1,9 @@
 <template>
   <div class="jumbotron mb-2 py-3 px-3">
     <div class="row">
-      <div class="col-1 align-items-center">
-        <input
-          @change="updateChecked(task, !task.completed)"
-          :id="task.id"
-          type="checkbox"
-          :checked="task.completed"
-        />
-        <label :for="task.id"></label>
-      </div>
+      <app-checkbox
+        :task="task"
+        :updateChecked="updateChecked"/>
 
       <div class="col-9 align-items-center">
         <div class="container">
@@ -101,6 +95,9 @@
 <script>
 import AppIcon from "../UI/AppIcon.vue";
 import AppButton from "../UI/AppButton";
+import AppCheckbox from "../UI/AppCheckbox";
+
+
 export default {
   name: "TodoListItem",
   data() {
@@ -112,7 +109,8 @@ export default {
   props: ["task", "remove", "updateChecked", "updateTitle"],
   components: {
     AppIcon,
-    AppButton
+    AppButton,
+    AppCheckbox
   }
 };
 </script>
@@ -123,34 +121,4 @@ export default {
   padding: 0;
 }
 
-label {
-  font-size: 54px;
-  cursor: pointer;
-}
-
-.input-label {
-  font-size: 20px;
-}
-
-input[type="checkbox"] {
-  display: none;
-} /* to hide the checkbox itself */
-input[type="checkbox"] + label:before {
-  font-family: FontAwesome;
-  display: inline-block;
-}
-
-input[type="checkbox"] + label:before {
-  content: "\f096";
-} /* unchecked icon */
-input[type="checkbox"] + label:before {
-  letter-spacing: 10px;
-} /* space between checkbox and label */
-
-input[type="checkbox"]:checked + label:before {
-  content: "\f046";
-} /* checked icon */
-input[type="checkbox"]:checked + label:before {
-  letter-spacing: 5px;
-} /* allow space for check mark */
 </style>
