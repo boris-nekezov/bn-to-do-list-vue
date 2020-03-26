@@ -7,28 +7,12 @@
 
       <div class="col-9 align-items-center">
         <div class="container">
-          <div class="row">
-            <div class="col">
-              <div class="form-group">
-                <label
-                  :for="'input' + task.id"
-                  class="input-label"
-                  v-if="!isExpanded"
-                  @click="isExpanded = !isExpanded"
-                >
-                  {{ task.title }}</label
-                >
-                <input
-                  :id="'input' + task.id"
-                  v-if="isExpanded"
-                  v-model="newTitle"
-                  class="form-control form-control-lg mb-2"
-                  type="text"
-                  :placeholder="task.title"
-                />
-              </div>
-            </div>
-          </div>
+
+          <todo-list-item-title
+            :task="task"
+            :isExpanded="isExpanded"
+            @expandedWasChanged="isExpanded = $event"
+            @titleWasChanged="newTitle = $event" />
 
           <div class="row">
             <div class="col">
@@ -96,6 +80,7 @@
 import AppIcon from "../UI/AppIcon.vue";
 import AppButton from "../UI/AppButton";
 import AppCheckbox from "../UI/AppCheckbox";
+import TodoListItemTitle from "./TodoListItemTitle";
 
 
 export default {
@@ -110,7 +95,8 @@ export default {
   components: {
     AppIcon,
     AppButton,
-    AppCheckbox
+    AppCheckbox,
+    TodoListItemTitle
   }
 };
 </script>
