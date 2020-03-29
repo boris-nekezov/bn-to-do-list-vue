@@ -1,9 +1,10 @@
 <template>
   <input
     :type="type"
-    v-model="val"
+    v-model="localVal"
     @input="getVal"
-    class="form-control" />
+    :class="['form-control', modifiers]"
+    :placeholder="val"/>
 </template>
 
 <script>
@@ -11,13 +12,21 @@
     name: 'AppInput',
     data() {
       return {
-        val: ''
+        localVal: ''
       }
     },
-    props: ['type'],
+    props: [
+      'type',
+      'modifiers',
+      'placeholder',
+      'val'
+    ],
+    mounted(){
+      this.localVal = this.val;
+    },
     methods: {
       getVal(){
-        this.$emit('valueWasEdited', this.val);
+        this.$emit('valueWasEdited', this.localVal);
       }
     }
   }

@@ -9,21 +9,22 @@
           @click="getExpandedVal(isExpanded)">
           {{ task.title }}</label
         >
-        <input
+        <app-input
           :id="'input' + task.id"
-          v-if="isExpanded"
-          v-model="task.title"
-          @input="getTitle(task.title)"
-          class="form-control form-control-lg mb-2"
           type="text"
-          :placeholder="task.title"
-        />
+          modifiers="form-control-lg mb-2"
+          v-if="isExpanded"
+          :val="task.title"
+          @valueWasEdited="task.title = $event; getTitle(task.title)"
+          :placeholder="task.title" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+  import AppInput from "../UI/AppInput";
+
   export default {
     name: 'TodoListItemTitle',
     props: {
@@ -44,6 +45,9 @@
       getTitle (newTitle) {
         this.$emit('titleWasChanged', newTitle);
       }
+    },
+    components: {
+      AppInput
     }
   }
 </script>
